@@ -1,5 +1,4 @@
 <?php
-include("./app/core/config.php");
 
 if (!isset($cookie)) {
             header("location: /auth");
@@ -12,13 +11,13 @@ if (!isset($cookie)) {
         }
 
 if ($row['perm'] == 'admin'):
-    $sql = 'SELECT id, name, perm FROM users';
+    $sql = 'SELECT * FROM components';
     $stmt = $pdo->query($sql);
     $row = $stmt->fetchall(PDO::FETCH_ASSOC);
     foreach ($row as $value):?>
 
-        <div>Имя пользователя: <?=$value['name']?></div>
-        <div>Уровень доступа: <?=$value['perm']?></div><br>
+        <div>Компонент <?=$value['component']?></div>
+        <div>Тип: <?=$value['type']?></div><br>
         <a href="/api/deleteuser?id=<?= htmlspecialchars($value['id']); ?>"><button>Удалить</button></a>
         <a href="/cabinet/computer/view?id=<?= htmlspecialchars($value['id']); ?>"><button>Детальный просмотр</button></a>
         <a href="/api/deleteuser=<?= htmlspecialchars($value['id']); ?>"><button>Изменить</button></a><br><br>

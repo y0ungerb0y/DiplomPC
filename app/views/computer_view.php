@@ -76,7 +76,6 @@
 
     <div class="container">
         <?php
-        include("./app/core/config.php");
 
         $id = $_GET['id'];
 

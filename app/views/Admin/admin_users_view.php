@@ -1,5 +1,4 @@
 <?php
-include("./app/core/config.php");
 
 if (!isset($cookie)) {
             header("location: /auth");

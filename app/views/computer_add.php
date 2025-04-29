@@ -1,3 +1,14 @@
+
+<?php
+$rams = $pdo->query("SELECT * FROM components WHERE type='ram'")->fetchAll();
+$motherboards = $pdo->query("SELECT * FROM components WHERE type='motherboard'")->fetchAll();
+$cpus = $pdo->query("SELECT * FROM components WHERE type='cpu'")->fetchAll();
+$gpus = $pdo->query("SELECT * FROM components WHERE type='gpu'")->fetchAll();
+$storages = $pdo->query("SELECT * FROM components WHERE type='storage'")->fetchAll();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -38,7 +49,8 @@
         }
 
         input[type="text"],
-        input[type="number"] {
+        input[type="number"],
+        select {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -60,6 +72,7 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
             font-size: 16px;
+            width: 100%;
         }
 
         button:hover {
@@ -70,7 +83,6 @@
             margin-bottom: 20px;
         }
 
-        /* Расположение checkbox и label в одну строку */
         .moved-group {
             display: flex;
             align-items: center;
@@ -79,7 +91,6 @@
         .moved-group label {
             margin-right: 10px;
         }
-
     </style>
 </head>
 <body>
@@ -100,27 +111,52 @@
 
             <div class="form-group">
                 <label for="memory">Оперативная память:</label>
-                <input type="text" id="memory" name="memory" required>
+                <select id="memory" name="memory" required>
+                    <option value="">-- Выберите ОЗУ --</option>
+                    <?php foreach($rams as $ram): ?>
+                        <option value="<?= $ram['component'] ?>"><?= $ram['component'] ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
 
             <div class="form-group">
                 <label for="motherboard">Материнская плата:</label>
-                <input type="text" id="motherboard" name="motherboard" required>
+                <select id="motherboard" name="motherboard" required>
+                    <option value="">-- Выберите мат. плату --</option>
+                    <?php foreach($motherboards as $mb): ?>
+                        <option value="<?= $mb['component'] ?>"><?= $mb['component'] ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
 
             <div class="form-group">
                 <label for="processor">Процессор:</label>
-                <input type="text" id="processor" name="processor" required>
+                <select id="processor" name="processor" required>
+                    <option value="">-- Выберите процессор --</option>
+                    <?php foreach($cpus as $cpu): ?>
+                        <option value="<?= $cpu['component'] ?>"><?= $cpu['component'] ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
 
             <div class="form-group">
                 <label for="videocard">Видеокарта:</label>
-                <input type="text" id="videocard" name="videocard" required>
+                <select id="videocard" name="videocard" required>
+                    <option value="">-- Выберите видеокарту --</option>
+                    <?php foreach($gpus as $gpu):?>
+                        <option value="<?= $gpu['component'] ?>"><?= $gpu['component'] ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
 
             <div class="form-group">
-                <label for="harddisk">Запоминающие устройства:</label>
-                <input type="text" id="harddisk" name="harddisk" required>
+                <label for="harddisk">Накопитель:</label>
+                <select id="harddisk" name="harddisk" required>
+                <option value="">-- Выберите ПЗУ --</option>
+                    <?php foreach($storages as $storage): ?>
+                        <option value="<?= $storage['component'] ?>"><?= $storage['component'] ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
 
             <button type="submit">Добавить</button>

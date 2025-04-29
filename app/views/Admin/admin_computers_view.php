@@ -130,7 +130,6 @@
         </div>
 
         <?php
-        include("./app/core/config.php");
         $cookie = $_COOKIE['token'];
 
         if (!isset($cookie)) {

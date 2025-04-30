@@ -144,7 +144,7 @@
 
         if ($row['perm'] == 'admin'): ?>
             <div class="admin-buttons">
-                <a href="/cabinet/computer/add">Добавить компьютер</a>
+                <a href="/cabinet/computer/add">Добавить</a>
             </div>
 
             <ul class="computer-list">

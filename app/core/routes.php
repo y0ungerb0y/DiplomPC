@@ -10,7 +10,6 @@ $routes = [
     // API ENDPOINT
     "/api/addcomputer"      => "app/repo/Add_computer.php",
     "/api/auth"             => "app/repo/Auth.php",
-    "/api/deletecomputer"   => "app/repo/Delete_computer.php",
-    "/api/deleteuser"   => "app/repo/Delete_user.php",
+    "/api/delete"   => "app/repo/Delete.php",
     "/logout"               => "app/repo/Logout.php", 
 ];

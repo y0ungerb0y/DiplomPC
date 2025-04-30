@@ -104,11 +104,11 @@
                 $include = $_GET['include'];
 
                 if ($include == 'computers') {
-                    include('Admin/admin_computers_view.php');
+                    include('AdminViews/admin_computers_view.php');
                 } elseif ($include == 'components') { 
-                    include('Admin/admin_components_view.php'); 
+                    include('AdminViews/admin_components_view.php'); 
                 } elseif ($include == 'users') { 
-                    include('Admin/admin_users_view.php'); 
+                    include('AdminViews/admin_users_view.php'); 
                 } else {
                     echo "<p>Выберите раздел для отображения.</p>";
                 }

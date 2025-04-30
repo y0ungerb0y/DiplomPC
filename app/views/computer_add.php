@@ -98,7 +98,7 @@ $storages = $pdo->query("SELECT * FROM components WHERE type='storage'")->fetchA
     <div class="container">
         <h1>Добавить компьютер</h1>
 
-        <form action="/api/addcomputer" method="POST">
+        <form action="/api/Add?type=computer" method="POST">
             <div class="form-group">
                 <label for="number">Номер компьютера:</label>
                 <input type="text" id="number" name="number" required>

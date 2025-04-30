@@ -6,9 +6,11 @@ $routes = [
     "/cabinet"              => "app/views/lk.php",
     "/cabinet/computer/add" => "app/views/computer_add.php",
     "/cabinet/computer/view" => "app/views/computer_view.php",
+    "/cabinet/component/add" => "app/views/component_add.php",
+    
     
     // API ENDPOINT
-    "/api/addcomputer"      => "app/repo/Add_computer.php",
+    "/api/add"      => "app/repo/Add.php",
     "/api/auth"             => "app/repo/Auth.php",
     "/api/delete"   => "app/repo/Delete.php",
     "/logout"               => "app/repo/Logout.php", 

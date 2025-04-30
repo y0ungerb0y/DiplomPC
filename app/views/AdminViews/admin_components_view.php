@@ -144,7 +144,7 @@
 
         if ($row['perm'] == 'admin'): ?>
             <div class="admin-buttons">
-                <a href="/cabinet/computer/add">Добавить</a>
+                <a href="/cabinet/component/add">Добавить</a>
             </div>
 
             <ul class="computer-list">
@@ -156,12 +156,10 @@
 
                 foreach ($components as $component): ?>
                     <li class="computer-item">
-                        <p><span class="computer-item-label">ID:</span> <span class="computer-item-value"><?= htmlspecialchars($component['id']); ?></span></p>
-                        <p><span class="computer-item-label">Номер:</span> <span class="computer-item-value"><?= htmlspecialchars($component['component']); ?></span></p>
-                        <p><span class="computer-item-label">Перемещен:</span> <span class="computer-item-value"><?= htmlspecialchars($component['type']); ?></span></p>
+                        <p><span class="computer-item-label">Название:</span> <span class="computer-item-value"><?= htmlspecialchars($component['component']); ?></span></p>
+                        <p><span class="computer-item-label">Тип:</span> <span class="computer-item-value"><?= htmlspecialchars($component['type']); ?></span></p>
 
                         <a href="/api/delete?id=<?= htmlspecialchars($component['id']); ?>&type=component">Удалить</a>
-                        <a href="/cabinet/computer/view?id=<?= htmlspecialchars($component['id']); ?>">Детальный просмотр</a>
                     </li>
                 <?php endforeach; ?>
             </ul>

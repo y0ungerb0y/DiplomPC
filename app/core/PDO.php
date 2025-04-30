@@ -13,3 +13,9 @@
             PDO::ATTR_EMULATE_PREPARES => false,
         ];
     $pdo = new PDO($dsn, $user, $pass, $opt);
+
+    $tables = [
+        "user" => "users",
+        "component" => "components",
+        "computer" => "computers",  
+    ];

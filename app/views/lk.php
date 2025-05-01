@@ -24,6 +24,7 @@
             width: 80%;
             max-width: 800px;
             margin-bottom: 20px;
+            position: relative;
         }
 
         h1 {
@@ -41,6 +42,7 @@
             display: flex;
             justify-content: center;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .button {
@@ -60,6 +62,17 @@
             background-color: #0056b3;
         }
 
+        .button.back {
+            background-color: #6c757d;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .button.back:hover {
+            background-color: #5a6268;
+        }
+
         .included-content {
             border-top: 1px solid #ddd;
             padding-top: 20px;
@@ -74,7 +87,9 @@
     if (!isset($cookie)) {
         header("location: /auth");
         exit;
-    } else {
+    } 
+    else 
+    {
         $sql = "SELECT name, perm FROM users WHERE token = :token";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(['token' => $cookie]);
@@ -88,6 +103,7 @@
     ?>
 
     <div class="container">
+        <a href="/" class="button back">← Назад</a>
         <h1>Личный кабинет</h1>
         <p>Здравствуйте, <?php echo htmlspecialchars($row['name']); ?></p>
         <p>Уровень доступа: <?php echo htmlspecialchars($row['perm']); ?></p>

@@ -14,6 +14,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            position: relative;
         }
 
         .container {
@@ -24,6 +25,7 @@
             width: 80%;
             max-width: 600px;
             text-align: left;
+            position: relative;
         }
 
         h2 {
@@ -60,6 +62,7 @@
             margin: 20px auto; 
             text-decoration: none; 
             width: fit-content; 
+            text-align: center;
         }
 
         .button:hover {
@@ -70,35 +73,37 @@
             color: #dc3545;
             text-align: center;
         }
+        
     </style>
 </head>
 <body>
-
     <div class="container">
         <?php
+        $id = $_GET['id'] ?? null;
 
-        $id = $_GET['id'];
-
-        $sql = "SELECT computer_number, motherboard, memory, processor, videocard, harddisk FROM computers WHERE id = :id";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['id' => $id]);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($row) {
-            echo "<h2>Информация о компьютере</h2>";
-            echo "<p><span class='label'>Номер компьютера:</span> <span class='value'>" . htmlspecialchars($row['computer_number']) . "</span></p>";
-            echo "<p><span class='label'>Материнская плата:</span> <span class='value'>" . htmlspecialchars($row['motherboard']) . "</span></p>";
-            echo "<p><span class='label'>Оперативная память:</span> <span class='value'>" . htmlspecialchars($row['memory']) . "</span></p>";
-            echo "<p><span class='label'>Процессор:</span> <span class='value'>" . htmlspecialchars($row['processor']) . "</span></p>";
-            echo "<p><span class='label'>Видеокарта:</span> <span class='value'>" . htmlspecialchars($row['videocard']) . "</span></p>";
-            echo "<p><span class='label'>Запоминающие устройства:</span> <span class='value'>" . htmlspecialchars($row['harddisk']) . "</span></p>";
+        if (!$id) {
+            echo "<p class='error-message'>ID компьютера не указан.</p>";
         } else {
-            echo "<p class='error-message'>Компьютер не найден.</p>";
+            $sql = "SELECT computer_number, motherboard, memory, processor, videocard, harddisk FROM computers WHERE id = :id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(['id' => $id]);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($row) {
+                echo "<h2>Информация о компьютере</h2>";
+                echo "<p><span class='label'>Номер компьютера:</span> <span class='value'>" . htmlspecialchars($row['computer_number']) . "</span></p>";
+                echo "<p><span class='label'>Материнская плата:</span> <span class='value'>" . htmlspecialchars($row['motherboard']) . "</span></p>";
+                echo "<p><span class='label'>Оперативная память:</span> <span class='value'>" . htmlspecialchars($row['memory']) . "</span></p>";
+                echo "<p><span class='label'>Процессор:</span> <span class='value'>" . htmlspecialchars($row['processor']) . "</span></p>";
+                echo "<p><span class='label'>Видеокарта:</span> <span class='value'>" . htmlspecialchars($row['videocard']) . "</span></p>";
+                echo "<p><span class='label'>Запоминающие устройства:</span> <span class='value'>" . htmlspecialchars($row['harddisk']) . "</span></p>";
+            } else {
+                echo "<p class='error-message'>Компьютер с ID $id не найден.</p>";
+            }
         }
         ?>
 
-        <a href="/cabinet" class="button">Личный кабинет</a>
+        <a href="/cabinet" class="button">Вернуться в личный кабинет</a>
     </div>
-
 </body>
 </html>

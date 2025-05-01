@@ -14,7 +14,7 @@ $storages = $pdo->query("SELECT * FROM components WHERE type='storage'")->fetchA
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добавить копмпонент</title>
+    <title>Добавить компонент</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -91,12 +91,31 @@ $storages = $pdo->query("SELECT * FROM components WHERE type='storage'")->fetchA
         .moved-group label {
             margin-right: 10px;
         }
+        .back-button {
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 14px;
+            text-decoration: none;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        
+        .back-button:hover {
+            background-color: #5a6268;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h1>Добавить компонент</h1>
+        <a href="javascript:history.back()" class="back-button">← Назад</a>
 
         <form action="/api/add?type=component" method="POST">
 

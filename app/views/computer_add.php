@@ -5,7 +5,6 @@ $motherboards = $pdo->query("SELECT * FROM components WHERE type='motherboard'")
 $cpus = $pdo->query("SELECT * FROM components WHERE type='cpu'")->fetchAll();
 $gpus = $pdo->query("SELECT * FROM components WHERE type='gpu'")->fetchAll();
 $storages = $pdo->query("SELECT * FROM components WHERE type='storage'")->fetchAll();
-
 ?>
 
 
@@ -91,14 +90,39 @@ $storages = $pdo->query("SELECT * FROM components WHERE type='storage'")->fetchA
         .moved-group label {
             margin-right: 10px;
         }
+        .button.back {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .back-button {
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 14px;
+            text-decoration: none;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+
     </style>
 </head>
 <body>
 
     <div class="container">
         <h1>Добавить компьютер</h1>
+        <a href="javascript:history.back()" class="back-button">← Назад</a>
 
-        <form action="/api/Add?type=computer" method="POST">
+        <form action="/api/add?type=computer" method="POST">
             <div class="form-group">
                 <label for="number">Номер компьютера:</label>
                 <input type="text" id="number" name="number" required>

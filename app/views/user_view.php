@@ -94,7 +94,7 @@
                     echo "<h2>Информация о пользователе</h2>";
                     echo "<p><span class='label'>Ф.И.О:</span> <span class='value'>" . htmlspecialchars($row['name']) . "</span></p>";
                     echo "<p><span class='label'>Логин:</span> <span class='value'>" . htmlspecialchars($row['login']) . "</span></p>";
-                    echo "<p><span class='label'>Уровень доступа:</span> <span class='value'>" . htmlspecialchars($row['perm']) . "</span></p>";
+                    echo "<p><span class='label'>Уровень доступа:</span> <span class='value'>" . htmlspecialchars($perm[$row['perm']]) . "</span></p>";
                 } else {
                     echo "<p class='error-message'>Пользователь с ID $id не найден.</p>";
                 }

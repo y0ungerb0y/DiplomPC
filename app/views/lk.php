@@ -105,8 +105,7 @@
         <a href="/" class="button back">← Назад</a>
         <h1>Личный кабинет</h1>
         <p>Здравствуйте, <?php echo htmlspecialchars($row['name']); ?></p>
-        <p>Уровень доступа: <?php echo htmlspecialchars($row['perm']); ?></p>
-
+        <p>Уровень доступа: <?php echo htmlspecialchars($perm[$row['perm']]); ?></p>
         <div class="button-container">
             <a href="/cabinet?include=computers" class="button">Компьютеры</a>
             <a href="/cabinet?include=components" class="button">Комплектующие</a> 

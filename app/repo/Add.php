@@ -42,4 +42,23 @@ elseif($type === 'component')
 elseif($type === 'user')
 {
 
+    $name = $_POST["name"];
+    $login = $_POST["login"];
+    $pass = $_POST["pass"];
+    $perm = $_POST["type"];
+
+    if (empty($name)) {
+        die("Имя не должно быть пустым!");
+    }
+
+    $sql = "INSERT INTO users (name, login, pass, perm) VALUES (:name, :login, :pass, :perm)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['name' => $name, 'login' => $login, 'pass' => $pass, 'perm' => $perm]);
+
+    header("Location: /cabinet");
+    exit;
+}
+else
+{
+    echo 'Непредвиденная ошибка';
 }

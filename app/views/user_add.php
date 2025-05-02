@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -39,6 +38,7 @@
         }
 
         input[type="text"],
+        input[type="password"],
         input[type="number"],
         select {
             width: 100%;
@@ -104,25 +104,32 @@
 <body>
 
     <div class="container">
-        <h1>Добавить компонент</h1>
+        <h1>Добавить пользователя</h1>
         <a href="javascript:history.back()" class="back-button">← Назад</a>
 
-        <form action="/api/add?type=component" method="POST">
+        <form action="/api/add?type=user" method="POST">
 
             <div class="form-group">
-                <label for="motherboard">Название:</label>
-                <input type="text" placeholder="Название" name="name" ></input>
+                <label for="name">Ф.И.О:</label>
+                <input type="text" placeholder="Ф.И.О" name="name" required></input>
             </div>
 
             <div class="form-group">
-                <label for="type">Группа:</label>
+                <label for="login">Логин:</label>
+                <input type="text" placeholder="Логин" name="login" required></input>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Пароль:</label>
+                <input type="password" placeholder="Пароль" name="pass" required></input>
+            </div>
+
+            <div class="form-group">
+                <label for="type">Уровень доступа:</label>
                 <select id="type" name="type" required>
-                    <option value="">-- Выберите тип устройства --</option>
-                    <option value="gpu">Видеокарта</option>
-                    <option value="cpu">Процессор</option>
-                    <option value="motherboard">Материнская плата</option>
-                    <option value="ram">ОЗУ</option>
-                    <option value="storage">ПЗУ</option>
+                    <option value="">-- Выберите тип доступа --</option>
+                    <option value="admin">Администратор</option>
+                    <option value="user">Пользователь</option>
                 </select>
             </div>
             <button type="submit">Добавить</button>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Личный кабинет - Список компьютеров</title>
+    <title>Личный кабинет - Список пользователей</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -144,7 +144,7 @@
 
         if ($row['perm'] == 'admin'): ?>
             <div class="admin-buttons">
-                <a href="/cabinet/computer/add">Добавить</a>
+                <a href="/cabinet/user/add">Добавить</a>
             </div>
 
             <ul class="computer-list">
@@ -153,13 +153,13 @@
                 $stmt = $pdo->query($sql);
                 $row = $stmt->fetchall(PDO::FETCH_ASSOC);
                 foreach ($row as $value):?>
+                
                     <li class="computer-item">
                         <p><span class="computer-item-label">Имя:</span> <span class="computer-item-value"><?= htmlspecialchars($value['name']) ?></span></p>
                         <p><span class="computer-item-label">Уровень доступа:</span> <span class="computer-item-value"><?= htmlspecialchars($value['perm']); ?></span></p>
-
-                        <a href="javascript:void(0);" onclick="showDeleteModal(<?= $users['id'] ?>)" class="delete-btn">Удалить</a>
-                        <a href="/cabinet/computer/view?id=<?= htmlspecialchars($computer['id']); ?>">Детальный просмотр</a>
-                        <a href="move.php?id=<?= htmlspecialchars($computer['id']); ?>">Переместить</a>
+                        <a href="javascript:void(0);" onclick="showDeleteModal(<?= $value['id'] ?>)" class="delete-btn">Удалить</a>
+                        <a href="/cabinet/user/view?id=<?= htmlspecialchars($value['id']); ?>">Просмотр</a>
+                        <a href="/cabinet/computer/view?id=<?= htmlspecialchars($value['id']); ?>">Изменить</a>
                     </li>
                 <?php endforeach; ?>
             </ul>

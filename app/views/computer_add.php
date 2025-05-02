@@ -1,4 +1,4 @@
-
+<? if ($row['perm'] == 'admin'): ?>
 <?php
 $rams = $pdo->query("SELECT * FROM components WHERE type='ram'")->fetchAll();
 $motherboards = $pdo->query("SELECT * FROM components WHERE type='motherboard'")->fetchAll();
@@ -189,3 +189,6 @@ $storages = $pdo->query("SELECT * FROM components WHERE type='storage'")->fetchA
 
 </body>
 </html>
+<?else: ?>
+    <h1>Недостаточно прав для просмотра данной страницы!</h1>
+<?endif;?>

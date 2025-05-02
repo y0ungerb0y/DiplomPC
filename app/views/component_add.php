@@ -1,4 +1,4 @@
-
+<? if ($row['perm'] == 'admin'): ?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -131,3 +131,6 @@
 
 </body>
 </html>
+<?else:?>
+    <h1>Недостаточно прав для просмотра данной страницы!</h1>
+<?endif;?>

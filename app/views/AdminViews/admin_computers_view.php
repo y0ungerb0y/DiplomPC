@@ -146,6 +146,7 @@
             <div class="admin-buttons">
                 <a href="/cabinet/computer/add">Добавить</a>
             </div>
+        <?endif;?>
 
             <ul class="computer-list">
                 <?php
@@ -159,14 +160,15 @@
                         <p><span class="computer-item-label">ID:</span> <span class="computer-item-value"><?= htmlspecialchars($computer['id']); ?></span></p>
                         <p><span class="computer-item-label">Номер:</span> <span class="computer-item-value"><?= htmlspecialchars($computer['computer_number']); ?></span></p>
                         <p><span class="computer-item-label">Перемещен:</span> <span class="computer-item-value"><?= htmlspecialchars($computer['move_it']); ?></span></p>
+                        <? if ($row['perm'] == 'admin'): ?>
+                            <a href="javascript:void(0);" onclick="showDeleteModal(<?= $computer['id'] ?>)" class="delete-btn">Удалить</a>
+                            <a href="/cabinet/computer/view?id=<?= htmlspecialchars($computer['id']); ?>">Детальный просмотр</a>
+                            <a href="move.php?id=<?= htmlspecialchars($computer['id']); ?>">Переместить</a>
+                        <? endif;?>
 
-                        <a href="javascript:void(0);" onclick="showDeleteModal(<?= $computer['id'] ?>)" class="delete-btn">Удалить</a>
-                        <a href="/cabinet/computer/view?id=<?= htmlspecialchars($computer['id']); ?>">Детальный просмотр</a>
-                        <a href="move.php?id=<?= htmlspecialchars($computer['id']); ?>">Переместить</a>
                     </li>
                 <?php endforeach; ?>
             </ul>
-        <?php endif; ?>
     </div>
     <div id="confirmModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
     <div style="background: white; padding: 20px; border-radius: 5px; text-align: center;">

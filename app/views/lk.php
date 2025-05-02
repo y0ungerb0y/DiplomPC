@@ -82,7 +82,6 @@
 <body>
 
     <?php
-    $cookie = $_COOKIE['token'];
 
     if (!isset($cookie)) {
         header("location: /auth");
@@ -111,7 +110,9 @@
         <div class="button-container">
             <a href="/cabinet?include=computers" class="button">Компьютеры</a>
             <a href="/cabinet?include=components" class="button">Комплектующие</a> 
-            <a href="/cabinet?include=users" class="button">Пользователи</a> 
+            <? if ($row['perm'] == 'admin'): ?>
+                <a href="/cabinet?include=users" class="button">Пользователи</a> 
+            <? endif; ?>
         </div>
 
         <div class="included-content">

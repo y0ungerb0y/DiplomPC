@@ -146,7 +146,7 @@
             <div class="admin-buttons">
                 <a href="/cabinet/component/add">Добавить</a>
             </div>
-
+        <? endif; ?>
             <ul class="computer-list">
                 <?php
                 $sql = "SELECT * FROM components";
@@ -158,12 +158,12 @@
                     <li class="computer-item">
                         <p><span class="computer-item-label">Название:</span> <span class="computer-item-value"><?= htmlspecialchars($component['component']); ?></span></p>
                         <p><span class="computer-item-label">Тип:</span> <span class="computer-item-value"><?= htmlspecialchars($component['type']); ?></span></p>
-
+                    <? if ($row['perm'] == 'admin'): ?>
                         <a href="javascript:void(0);" onclick="showDeleteModal(<?= $component['id'] ?>)" class="delete-btn">Удалить</a>
+                    <? endif; ?>
                     </li>
                 <?php endforeach; ?>
             </ul>
-        <?php endif; ?>
     </div>
     <div id="confirmModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
     <div style="background: white; padding: 20px; border-radius: 5px; text-align: center;">

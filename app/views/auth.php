@@ -4,100 +4,101 @@ if (isset($_COOKIE['token'])) {
     exit; 
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Авторизация - COMP LOCAL</title>
+    <title>Авторизация</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
+            margin: 0;
         }
-
-        .container {
-            background-color: #fff;
+        .auth-form {
+            background: white;
+            padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            text-align: center;
-            width: 80%;
-            max-width: 400px; 
-        }
-
-        h2 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        div {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-        }
-
-        input[type="text"],
-        input[type="password"] {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             width: 100%;
-            padding: 10px;
+            max-width: 400px;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        input {
+            width: 100%;
+            padding: 0.75rem;
             border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box; 
-            font-size: 16px;
+            border-radius: 4px;
+            font-size: 1rem;
         }
-
         button {
-            background-color: #007bff;
-            color: #fff;
+            width: 100%;
+            padding: 0.75rem;
+            background-color:rgb(0, 115, 255);
+            color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-size: 16px;
+            margin-top: 1rem;
         }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        .error-message {
-            color: #dc3545;
-            margin-top: 10px;
+        .error {
+            color: #d32f2f;
+            background-color: #fde0e0;
+            padding: 0.75rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            display: none;
         }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <h2>Авторизация</h2>
-
-        <form method="POST" action="/api/auth">
-            <div>
-                <label for="login">Логин:</label>
-                <input type="text" id="login" name="login" required>
+    <div class="auth-form">
+        <h2>Вход в систему</h2>
+        
+        <div class="error" id="error-message"></div>
+        
+        <form method="POST" id="authForm">
+            <div class="form-group">
+                <input type="text" name="login" placeholder="Логин" required>
             </div>
-            <div>
-                <label for="password">Пароль:</label>
-                <input type="password" id="password" name="password" required>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Пароль" required>
             </div>
-            <div>
-                <button type="submit">Войти</button>
-            </div>
+            <button type="submit">Войти</button>
+        </form>
     </div>
 
+    <script>
+        document.getElementById('authForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            document.getElementById('error-message').style.display = 'none';
+            
+            fetch('/api/auth', {
+                method: 'POST',
+                body: new FormData(this)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = '/cabinet';
+                } else {
+                    const errorElement = document.getElementById('error-message');
+                    errorElement.textContent = data.message;
+                    errorElement.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+        });
+    </script>
 </body>
 </html>

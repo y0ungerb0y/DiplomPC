@@ -1,7 +1,7 @@
 <?php
 $type = $_GET["type"] ?? "";
 
-if($type == 'computer'){
+if($type === 'computer'){
     $number = $_POST["number"];
     $motherboard = $_POST["motherboard"];
     $videocard = $_POST["videocard"];
@@ -23,7 +23,7 @@ if($type == 'computer'){
     header("Location: /cabinet");
     exit;
 }
-elseif($type == 'component')
+elseif($type === 'component')
 {
     $name= $_POST["name"];
     $type = $_POST["type"];
@@ -38,4 +38,8 @@ elseif($type == 'component')
 
     header("Location: /cabinet");
     exit;
+}
+elseif($type === 'user')
+{
+
 }

@@ -113,7 +113,7 @@
             font-weight: bold;
             color: #555;
             display: inline-block;
-            width: 100px; /* Фиксированная ширина для меток */
+            width: 100px; 
         }
 
         .computer-item-value {
@@ -160,7 +160,7 @@
                         <p><span class="computer-item-label">Номер:</span> <span class="computer-item-value"><?= htmlspecialchars($computer['computer_number']); ?></span></p>
                         <p><span class="computer-item-label">Перемещен:</span> <span class="computer-item-value"><?= htmlspecialchars($computer['move_it']); ?></span></p>
 
-                        <a href="/api/delete?id=<?= htmlspecialchars($computer['id']); ?>&type=computer">Удалить</a>
+                        <a href="javascript:void(0);" onclick="showDeleteModal(<?= $computer['id'] ?>)" class="delete-btn">Удалить</a>
                         <a href="/cabinet/computer/view?id=<?= htmlspecialchars($computer['id']); ?>">Детальный просмотр</a>
                         <a href="move.php?id=<?= htmlspecialchars($computer['id']); ?>">Переместить</a>
                     </li>
@@ -168,5 +168,40 @@
             </ul>
         <?php endif; ?>
     </div>
+    <div id="confirmModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+    <div style="background: white; padding: 20px; border-radius: 5px; text-align: center;">
+        <p>Вы действительно хотите удалить этот компьютер?</p>
+        <button id="confirmYes" style="background: #dc3545; color: white; border: none; padding: 8px 15px; margin-right: 10px;">Да, удалить</button>
+        <button id="confirmNo" style="background: #6c757d; color: white; border: none; padding: 8px 15px;">Отмена</button>
+    </div>
+</div>
 </body>
 </html>
+
+<script>
+let currentIdToDelete = null;
+const modal = document.getElementById('confirmModal');
+
+function showDeleteModal(id) {
+    currentIdToDelete = id;
+    modal.style.display = 'flex';
+}
+
+document.getElementById('confirmYes').addEventListener('click', function() {
+    if (currentIdToDelete) {
+        window.location.href = `/api/delete?id=${currentIdToDelete}&type=computer`;
+    }
+});
+
+document.getElementById('confirmNo').addEventListener('click', function() {
+    modal.style.display = 'none';
+    currentIdToDelete = null;
+});
+
+modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+        modal.style.display = 'none';
+        currentIdToDelete = null;
+    }
+});
+</script>

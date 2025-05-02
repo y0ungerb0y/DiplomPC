@@ -150,7 +150,7 @@
 
             <ul class="computer-list">
                 <?php
-                $sql = "SELECT id, computer_number, move_it FROM computers";
+                $sql = "SELECT id, computer_number FROM computers";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute();
                 $computers = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -159,7 +159,7 @@
                     <li class="computer-item">
                         <p><span class="computer-item-label">ID:</span> <span class="computer-item-value"><?= htmlspecialchars($computer['id']); ?></span></p>
                         <p><span class="computer-item-label">Номер:</span> <span class="computer-item-value"><?= htmlspecialchars($computer['computer_number']); ?></span></p>
-                        <p><span class="computer-item-label">Перемещен:</span> <span class="computer-item-value"><?= htmlspecialchars($computer['move_it']); ?></span></p>
+
                         <? if ($row['perm'] == 'admin'): ?>
                             <a href="javascript:void(0);" onclick="showDeleteModal(<?= $computer['id'] ?>)" class="delete-btn">Удалить</a>
                             <a href="/cabinet/computer/view?id=<?= htmlspecialchars($computer['id']); ?>">Детальный просмотр</a>

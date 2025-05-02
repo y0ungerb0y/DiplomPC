@@ -11,17 +11,15 @@ if ($row['perm'] == 'admin'){
         $harddisk = $_POST["harddisk"];
 
 
-        $moved = isset($_POST["moved"]) ? 1 : 0; 
-
         if (empty($number)) {
             die("Номер компьютера не может быть пустым.");
         }
 
-        $sql = "INSERT INTO computers (computer_number, move_it, motherboard, videocard, processor, memory, harddisk) VALUES (:number, :moved, :motherboard, :videocard, :processor, :memory, :harddisk)";
+        $sql = "INSERT INTO computers (computer_number, motherboard, videocard, processor, memory, harddisk) VALUES (:number, :motherboard, :videocard, :processor, :memory, :harddisk)";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(['number' => $number, 'moved' => $moved, 'motherboard' => $motherboard, 'videocard' => $videocard, 'processor' => $processor, 'memory' => $memory, 'harddisk' => $harddisk]);
+        $stmt->execute(['number' => $number, 'motherboard' => $motherboard, 'videocard' => $videocard, 'processor' => $processor, 'memory' => $memory, 'harddisk' => $harddisk]);
 
-        header("Location: /cabinet");
+        header("Location: /cabinet?include=computers");
         exit;
     }
     elseif($type === 'component')
@@ -37,7 +35,7 @@ if ($row['perm'] == 'admin'){
         $stmt = $pdo->prepare($sql);
         $stmt->execute(['name' => $name, 'type' => $type]);
 
-        header("Location: /cabinet");
+        header("Location: /cabinet?include=components");
         exit;
     }
     elseif($type === 'user')
@@ -56,7 +54,7 @@ if ($row['perm'] == 'admin'){
         $stmt = $pdo->prepare($sql);
         $stmt->execute(['name' => $name, 'login' => $login, 'pass' => $pass, 'perm' => $perm]);
 
-        header("Location: /cabinet");
+        header("Location: /cabinet?include=users");
         exit;
     }
     else

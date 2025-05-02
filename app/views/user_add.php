@@ -1,4 +1,3 @@
-<? var_dump($row['perm']); ?>
 <? if ($row['perm'] == 'admin'): ?>
     <!DOCTYPE html>
     <html lang="ru">

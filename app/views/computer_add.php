@@ -127,12 +127,6 @@ $storages = $pdo->query("SELECT * FROM components WHERE type='storage'")->fetchA
                 <label for="number">Номер компьютера:</label>
                 <input type="text" id="number" name="number" required>
             </div>
-
-            <div class="form-group moved-group">
-                <label for="moved">Перемещен:</label>
-                <input type="checkbox" id="moved" name="moved" value="true">
-            </div>
-
             <div class="form-group">
                 <label for="memory">Оперативная память:</label>
                 <select id="memory" name="memory" required>

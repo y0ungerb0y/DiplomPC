@@ -24,18 +24,25 @@ if ($row['perm'] == 'admin'){
     }
     elseif($type === 'component')
     {
-        $name= $_POST["name"];
-        $type = $_POST["type"];
-
-        if (empty($name)) {
-            die("Имя не должно быть пустым!");
+        $name = trim($_POST['name']);
+        $type = trim($_POST['type']);
+        $quantity = (int)$_POST['quantity'];
+        
+        $stmt = $pdo->prepare("SELECT id, quantity FROM components WHERE name = ? AND type = ?");
+        $stmt->execute([$name, $type]);
+        $existing = $stmt->fetch();
+        
+        if ($existing) {
+            $newQuantity = $existing['quantity'] + $quantity;
+            $update = $pdo->prepare("UPDATE components SET quantity = ? WHERE id = ?");
+            $update->execute([$newQuantity, $existing['id']]);
+            $message = "Количество компонента увеличено на $quantity. Теперь: $newQuantity шт.";
+        } else {
+            $insert = $pdo->prepare("INSERT INTO components (name, type, quantity) VALUES (?, ?, ?)");
+            $insert->execute([$name, $type, $quantity]);
+            $message = "Новый компонент добавлен: $quantity шт.";
         }
-
-        $sql = "INSERT INTO components (component, type) VALUES (:name, :type)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['name' => $name, 'type' => $type]);
-
-        header("Location: /cabinet?include=components");
+        header("Location: /cabinet?include=components&message=" . urlencode($message));
         exit;
     }
     elseif($type === 'user')

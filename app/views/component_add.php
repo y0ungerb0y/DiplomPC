@@ -110,7 +110,7 @@
         <form action="/api/add?type=component" method="POST">
 
             <div class="form-group">
-                <label for="motherboard">Название:</label>
+                <label for="name">Название:</label>
                 <input type="text" placeholder="Название" name="name" ></input>
             </div>
 
@@ -124,6 +124,10 @@
                     <option value="ram">ОЗУ</option>
                     <option value="storage">ПЗУ</option>
                 </select>
+            </div>
+                <div class="form-group">
+                    <label for="quantity">Количество:</label>
+                <input type="number" name="quantity" placeholder="Количество" min="1" value="1">
             </div>
             <button type="submit">Добавить</button>
         </form>

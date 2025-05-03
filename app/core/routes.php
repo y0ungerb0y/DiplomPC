@@ -8,7 +8,9 @@ $routes = [
     //Computers
     "/cabinet/computer/add" => "app/views/computer_add.php",
     "/cabinet/computer/view" => "app/views/computer_view.php",
-   
+    "/cabinet/computer/transfer" => "app/views/computer_transfer_form.php",
+    "/cabinet/computer/history" => "app/views/computer_transfer_history.php",
+    
     //Components
     "/cabinet/component/add" => "app/views/component_add.php",
    

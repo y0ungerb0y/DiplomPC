@@ -130,27 +130,18 @@
         </div>
 
         <?php
-        $cookie = $_COOKIE['token'];
-
-        if (!isset($cookie)) {
-            header("location: /auth");
-            exit;
-        } else {
-            $sql = "SELECT perm FROM users WHERE token = :token";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute(['token' => $cookie]);
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        }
-
         if ($row['perm'] == 'admin'): ?>
             <div class="admin-buttons">
-                <a href="/cabinet/computer/add">Добавить</a>
+                <a href="/cabinet/computer/history">История</a>
+                <a href="/cabinet/computer/add">Добавить</a>               
+            </div>
+                
             </div>
         <?endif;?>
 
             <ul class="computer-list">
                 <?php
-                $sql = "SELECT id, computer_number FROM computers";
+                $sql = "SELECT id, computer_number, current_room FROM computers";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute();
                 $computers = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -159,11 +150,11 @@
                     <li class="computer-item">
                         <p><span class="computer-item-label">ID:</span> <span class="computer-item-value"><?= htmlspecialchars($computer['id']); ?></span></p>
                         <p><span class="computer-item-label">Номер:</span> <span class="computer-item-value"><?= htmlspecialchars($computer['computer_number']); ?></span></p>
-
+                        <p><span class="computer-item-label">Кабинет:</span> <span class="computer-item-value"><?= htmlspecialchars($computer['current_room']); ?></span></p>
                         <? if ($row['perm'] == 'admin'): ?>
                             <a href="javascript:void(0);" onclick="showDeleteModal(<?= $computer['id'] ?>)" class="delete-btn">Удалить</a>
                             <a href="/cabinet/computer/view?id=<?= htmlspecialchars($computer['id']); ?>">Детальный просмотр</a>
-                            <a href="move.php?id=<?= htmlspecialchars($computer['id']); ?>">Переместить</a>
+                            <a href="/cabinet/computer/transfer?id=<?= htmlspecialchars($computer['id']); ?>">Переместить</a>
                         <? endif;?>
 
                     </li>

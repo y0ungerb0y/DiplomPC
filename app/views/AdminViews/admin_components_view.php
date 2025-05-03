@@ -157,7 +157,7 @@
                 foreach ($components as $component): ?>
                     <li class="computer-item">
                         <p><span class="computer-item-label">Название:</span> <span class="computer-item-value"><?= htmlspecialchars($component['name']); ?></span></p>
-                        <p><span class="computer-item-label">Тип:</span> <span class="computer-item-value"><?= htmlspecialchars($component['type']); ?></span></p>
+                        <p><span class="computer-item-label">Тип:</span> <span class="computer-item-value"><?= htmlspecialchars($component_type[$component['type']]); ?></span></p>
                         <p><span class="computer-item-label">Количество:</span> <span class="computer-item-value"><?= htmlspecialchars($component['quantity']); ?></span></p>
                     <? if ($row['perm'] == 'admin'): ?>
                         <a href="javascript:void(0);" onclick="showDeleteModal(<?= $component['id'] ?>)" class="delete-btn">Удалить</a>

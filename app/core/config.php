@@ -13,4 +13,13 @@ $tables =
     "component" => "components",
     "computer" => "computers",  
 ];
+
+$component_type =
+[
+    "gpu" => "Видеокарта",
+    "cpu" => "Процессор",
+    "motherboard" => "Материнская плата",
+    "ram" => "ОЗУ",
+    "storage" => "ПЗУ",
+]
 ?>

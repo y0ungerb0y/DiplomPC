@@ -132,7 +132,7 @@ $storages = $pdo->query("SELECT * FROM components WHERE type='storage'")->fetchA
                 <select id="memory" name="memory" required>
                     <option value="">-- Выберите ОЗУ --</option>
                     <?php foreach($rams as $ram): ?>
-                        <option value="<?= $ram['component'] ?>"><?= $ram['component'] ?></option>
+                        <option value="<?= $ram['name'] ?>"><?= $ram['name'] ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -142,7 +142,7 @@ $storages = $pdo->query("SELECT * FROM components WHERE type='storage'")->fetchA
                 <select id="motherboard" name="motherboard" required>
                     <option value="">-- Выберите мат. плату --</option>
                     <?php foreach($motherboards as $mb): ?>
-                        <option value="<?= $mb['component'] ?>"><?= $mb['component'] ?></option>
+                        <option value="<?= $mb['name'] ?>"><?= $mb['name'] ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -152,7 +152,7 @@ $storages = $pdo->query("SELECT * FROM components WHERE type='storage'")->fetchA
                 <select id="processor" name="processor" required>
                     <option value="">-- Выберите процессор --</option>
                     <?php foreach($cpus as $cpu): ?>
-                        <option value="<?= $cpu['component'] ?>"><?= $cpu['component'] ?></option>
+                        <option value="<?= $cpu['name'] ?>"><?= $cpu['name'] ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -162,7 +162,7 @@ $storages = $pdo->query("SELECT * FROM components WHERE type='storage'")->fetchA
                 <select id="videocard" name="videocard" required>
                     <option value="">-- Выберите видеокарту --</option>
                     <?php foreach($gpus as $gpu):?>
-                        <option value="<?= $gpu['component'] ?>"><?= $gpu['component'] ?></option>
+                        <option value="<?= $gpu['name'] ?>"><?= $gpu['name'] ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -172,7 +172,7 @@ $storages = $pdo->query("SELECT * FROM components WHERE type='storage'")->fetchA
                 <select id="harddisk" name="harddisk" required>
                 <option value="">-- Выберите ПЗУ --</option>
                     <?php foreach($storages as $storage): ?>
-                        <option value="<?= $storage['component'] ?>"><?= $storage['component'] ?></option>
+                        <option value="<?= $storage['name'] ?>"><?= $storage['name'] ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>

@@ -17,11 +17,13 @@ $routes = [
     //Users
     "/cabinet/user/add" => "app/views/user_add.php",
     "/cabinet/user/view" => "app/views/user_view.php",
+    "/cabinet/user/edit" => "app/views/user_edit.php",
     
     
     // API ENDPOINT
     "/api/add"      => "app/repo/Add.php",
     "/api/auth"             => "app/repo/Auth.php",
     "/api/delete"   => "app/repo/Delete.php",
+    "/api/edit" => "app/repo/Edit.php",
     "/logout"               => "app/repo/Logout.php", 
 ];

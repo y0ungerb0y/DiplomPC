@@ -52,9 +52,17 @@ if ($row['perm'] == 'admin'){
         $pass = $_POST["pass"];
         $perm = $_POST["type"];
 
-        if (empty($name)) {
+        if (empty($name)) 
+        {
             die("Имя не должно быть пустым!");
         }
+        
+        $stmt = $pdo->prepare('SELECT COUNT(*) FROM users WHERE login = :login');
+        $stmt->execute([':login' => $login]);
+
+        if ($stmt->fetchColumn() > 0) {
+            die("Пользователь с таким логином уже существует!");
+}
 
         $sql = "INSERT INTO users (name, login, pass, perm) VALUES (:name, :login, :pass, :perm)";
         $stmt = $pdo->prepare($sql);

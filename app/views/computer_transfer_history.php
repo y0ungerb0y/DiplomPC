@@ -124,9 +124,9 @@ if($row['perm'] == 'admin'):
                             <td><?= date('d.m.Y H:i', strtotime($transfer['transfer_date'])) ?></td>
                             <td>PC-<?= htmlspecialchars($transfer['computer_number']) ?></td>
                             <td>
-                                <span class="badge">Кабинет <?= htmlspecialchars($transfer['from_room']) ?></span>
+                                <span class="badge">Из кабинета <?= htmlspecialchars($transfer['from_room']) ?></span>
                                 <i class="bi bi-arrow-right"></i>
-                                <span class="badge">Кабинет <?= htmlspecialchars($transfer['to_room']) ?></span>
+                                <span class="badge">В кабинет <?= htmlspecialchars($transfer['to_room']) ?></span>
                             </td>
                             <td><?= htmlspecialchars($transfer['user_name']) ?></td>
                             <td><?= htmlspecialchars($transfer['reason'] ?? '—') ?></td>

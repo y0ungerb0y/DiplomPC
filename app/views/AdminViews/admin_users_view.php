@@ -24,6 +24,7 @@
                 padding: 30px;
                 width: 80%;
                 max-width: 800px;
+                margin: 0 auto;
             }
 
             h1 {
@@ -147,7 +148,7 @@
                 <div class="admin-buttons">
                     <a href="/cabinet/user/add">Добавить</a>
                 </div>
-
+            </div>
                 <ul class="computer-list">
                     <?php
                     $sql = 'SELECT id, name, perm FROM users';

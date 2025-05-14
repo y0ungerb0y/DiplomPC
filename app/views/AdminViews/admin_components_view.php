@@ -23,6 +23,7 @@
             padding: 30px;
             width: 80%;
             max-width: 800px;
+            margin: 0 auto;
         }
 
         h1 {
@@ -146,8 +147,10 @@
             <div class="admin-buttons">
                 <a href="/cabinet/component/add">Добавить</a>
             </div>
+        </div>
         <? endif; ?>
-            <ul class="computer-list">
+            
+        <ul class="computer-list">
                 <?php
                 $sql = "SELECT * FROM components";
                 $stmt = $pdo->prepare($sql);

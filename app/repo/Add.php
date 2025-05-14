@@ -14,7 +14,6 @@ if ($row['perm'] == 'admin'){
         if (empty($number)) {
             die("Номер компьютера не может быть пустым.");
         }
-
         $sql = "INSERT INTO computers (computer_number, motherboard, videocard, processor, memory, harddisk) VALUES (:number, :motherboard, :videocard, :processor, :memory, :harddisk)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(['number' => $number, 'motherboard' => $motherboard, 'videocard' => $videocard, 'processor' => $processor, 'memory' => $memory, 'harddisk' => $harddisk]);

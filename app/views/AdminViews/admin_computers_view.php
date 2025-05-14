@@ -23,6 +23,7 @@
             padding: 30px;
             width: 80%;
             max-width: 800px;
+            margin: 0 auto; 
         }
 
         h1 {

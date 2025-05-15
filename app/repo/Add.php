@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: application/json');
 if ($row['perm'] == 'admin'){
     $type = $_GET["type"] ?? "";
 
@@ -44,39 +45,63 @@ if ($row['perm'] == 'admin'){
         header("Location: /cabinet?include=components&message=" . urlencode($message));
         exit;
     }
-    elseif($type === 'user')
-    {
+elseif($type === 'user') {
+    header('Content-Type: application/json');
+    
+    try {
+        $name = trim($_POST["name"] ?? '');
+        $login = trim($_POST["login"] ?? '');
+        $pass = $_POST["pass"] ?? '';
+        $perm = $_POST["type"] ?? '';
 
-        $name = $_POST["name"];
-        $login = $_POST["login"];
-        $pass = $_POST["pass"];
-        $perm = $_POST["type"];
-
-        if (empty($name)) 
-        {
-            die("Имя не должно быть пустым!");
+        if (empty($name)) {
+            throw new Exception('Имя пользователя не должно быть пустым!');
         }
-        
+
+        if (empty($login)) {
+            throw new Exception('Логин не должен быть пустым!');
+        }
+
+        if (empty($pass)) {
+            throw new Exception('Пароль не должен быть пустым!');
+        }
+
+        if (!in_array($perm, ['admin', 'user'])) {
+            throw new Exception('Неверный уровень доступа!');
+        }
+
         $stmt = $pdo->prepare('SELECT COUNT(*) FROM users WHERE login = :login');
         $stmt->execute([':login' => $login]);
 
         if ($stmt->fetchColumn() > 0) {
-            die("Пользователь с таким логином уже существует!");
-}
+            throw new Exception('Пользователь с таким логином уже существует!');
+        }
 
         $sql = "INSERT INTO users (name, login, pass, perm) VALUES (:name, :login, :pass, :perm)";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(['name' => $name, 'login' => $login, 'pass' => $pass, 'perm' => $perm]);
+        $stmt->execute([
+            'name' => $name,
+            'login' => $login,
+            'pass' => $pass,
+            'perm' => $perm
+        ]);
 
-        header("Location: /cabinet?include=users");
+        echo json_encode([
+            'success' => true,
+            'message' => 'Пользователь успешно добавлен!'
+        ]);
+        exit;
+
+    } catch (Exception $e) {
+        echo json_encode([
+            'success' => false,
+            'message' => $e->getMessage()
+        ]);
         exit;
     }
-    else
-    {
-        echo 'Непредвиденная ошибка';
-    }
+
 }
 else
 {
     echo '<h1> Недостаточно прав! </h1>';
-}
+}}

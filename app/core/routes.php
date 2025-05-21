@@ -1,5 +1,7 @@
 <?php
-$routes = [
+use App\Core\Router;
+
+return [
     //Views 
     "/"                      => "app/views/welcome.php",
     "/auth"                 => "app/views/auth.php",

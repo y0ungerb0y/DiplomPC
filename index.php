@@ -1,10 +1,9 @@
 <?php
-include_once('app/core/config.php');
-include_once('app/core/PDO.php');
+namespace index;
+include('app/core/Autoloader.php');
 
-include_once('app/repo/Permcheck.php');
+use App\Core\Db;
 
-include_once('app/core/router.php');
 
 
 

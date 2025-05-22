@@ -131,15 +131,16 @@ if ($row['perm'] == 'admin'): ?>
         </div>
         
         <div class="form-group">
-            <? if($user_row['login'] != $db_root['login']):?>
             <label for="type">Уровень доступа:</label>
             <select id="type" name="perm">
                 <option value="">-- Выберите тип доступа --</option>
                 <option value="admin" <?= ($user_row['perm'] ?? '') === 'admin' ? 'selected' : '' ?>>Администратор</option>
-                <option value="user" <?= ($user_row['perm'] ?? '') === 'user' ? 'selected' : '' ?>>Пользователь</option>
+                <? if($user_row['login'] != $db_root['login']):?>
+                    <option value="user" <?= ($user_row['perm'] ?? '') === 'user' ? 'selected' : '' ?>>Пользователь</option>
+                <? endif; ?>
         </select>
     </div>
-    <? endif; ?>
+    
     
     
     <button type="submit" class="btn btn-primary">Изменить</button>

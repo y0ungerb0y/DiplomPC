@@ -1,9 +1,10 @@
 <? 
 $id = $_GET['id'];
 
-$stmt = $pdo->prepare("SELECT name, pass, perm FROM users WHERE id = ?");
+$stmt = $pdo->prepare("SELECT login, name, pass, perm FROM users WHERE id = ?");
 $stmt->execute([$id]);
 $user_row = $stmt->fetch();
+
 
 if ($row['perm'] == 'admin'): ?>
     <!DOCTYPE html>
@@ -128,8 +129,9 @@ if ($row['perm'] == 'admin'): ?>
             <label for="password">Пароль:</label>
             <input type="password" id="password" name="pass" placeholder="Новый пароль">
         </div>
-
+        
         <div class="form-group">
+            <? if($user_row['login'] != $db_root['login']):?>
             <label for="type">Уровень доступа:</label>
             <select id="type" name="perm">
                 <option value="">-- Выберите тип доступа --</option>
@@ -137,6 +139,8 @@ if ($row['perm'] == 'admin'): ?>
                 <option value="user" <?= ($user_row['perm'] ?? '') === 'user' ? 'selected' : '' ?>>Пользователь</option>
         </select>
     </div>
+    <? endif; ?>
+    
     
     <button type="submit" class="btn btn-primary">Изменить</button>
 </form>

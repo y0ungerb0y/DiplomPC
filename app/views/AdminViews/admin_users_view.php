@@ -137,12 +137,7 @@
             if (!isset($cookie)) {
                 header("location: /auth");
                 exit;
-            } else {
-                $sql = "SELECT perm FROM users WHERE token = :token";
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute(['token' => $cookie]);
-                $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            }
+            } 
 
             if ($row['perm'] == 'admin'): ?>
                 <div class="admin-buttons">
@@ -151,15 +146,17 @@
             </div>
                 <ul class="computer-list">
                     <?php
-                    $sql = 'SELECT id, name, perm FROM users';
+                    $sql = 'SELECT id, name, perm, login FROM users';
                     $stmt = $pdo->query($sql);
-                    $row = $stmt->fetchall(PDO::FETCH_ASSOC);
-                    foreach ($row as $value):?>
+                    $row_users = $stmt->fetchall(PDO::FETCH_ASSOC);
+                    foreach ($row_users as $value):?>
                     
                         <li class="computer-item">
                             <p><span class="computer-item-label">Имя:</span> <span class="computer-item-value"><?= htmlspecialchars($value['name']) ?></span></p>
                             <p><span class="computer-item-label">Уровень доступа:</span> <span class="computer-item-value"><? echo htmlspecialchars($perm[$value['perm']]); ?></span></p>
-                            <a href="javascript:void(0);" onclick="showDeleteModal(<?= $value['id'] ?>)" class="delete-btn">Удалить</a>
+                            <? if($value['login'] != $db_root['login']):?>
+                                <a href="javascript:void(0);" onclick="showDeleteModal(<?= $value['id'] ?>)" class="delete-btn">Удалить</a>
+                            <? endif; ?>
                             <a href="/cabinet/user/view?id=<?= htmlspecialchars($value['id']); ?>">Просмотр</a>
                             <a href="/cabinet/user/edit?id=<?= htmlspecialchars($value['id']); ?>">Изменить</a>
                         </li>

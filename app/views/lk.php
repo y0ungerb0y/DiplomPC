@@ -92,9 +92,9 @@
         $sql = "SELECT name, perm FROM users WHERE token = :token";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(['token' => $cookie]);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $row_check_lk = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (!$row) {
+        if (!$row_check_lk) {
             header("location: /auth");
             exit;
         }
@@ -104,7 +104,7 @@
     <div class="container">
         <a href="/" class="button back">← Назад</a>
         <h1>Личный кабинет</h1>
-        <p>Здравствуйте, <?php echo htmlspecialchars($row['name']); ?></p>
+        <p>Здравствуйте, <?php echo htmlspecialchars($row_check_lk['name']); ?></p>
         <p>Уровень доступа: <?php echo htmlspecialchars($perm[$row['perm']]); ?></p>
         <div class="button-container">
             <a href="/cabinet?include=computers" class="button">Компьютеры</a>

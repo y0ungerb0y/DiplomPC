@@ -154,9 +154,9 @@
                         <li class="computer-item">
                             <p><span class="computer-item-label">Имя:</span> <span class="computer-item-value"><?= htmlspecialchars($value['name']) ?></span></p>
                             <p><span class="computer-item-label">Уровень доступа:</span> <span class="computer-item-value"><? echo htmlspecialchars($perm[$value['perm']]); ?></span></p>
-                            <? if($value['login'] != $db_root['login']):?>
-                                <a href="javascript:void(0);" onclick="showDeleteModal(<?= $value['id'] ?>)" class="delete-btn">Удалить</a>
-                            <? endif; ?>
+                            <? if (!in_array($value['login'], $db_root['login'])): ?>
+                                <a href="javascript:void(0);" onclick="showDeleteModal(<?= htmlspecialchars($value['id']) ?>)" class="delete-btn">Удалить</a>
+                            <?php endif; ?>
                             <a href="/cabinet/user/view?id=<?= htmlspecialchars($value['id']); ?>">Просмотр</a>
                             <a href="/cabinet/user/edit?id=<?= htmlspecialchars($value['id']); ?>">Изменить</a>
                         </li>

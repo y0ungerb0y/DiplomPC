@@ -40,7 +40,8 @@ if ($row['perm'] == 'admin'): ?>
             <select id="type" name="perm">
                 <option value="">-- Выберите тип доступа --</option>
                 <option value="admin" <?= ($user_row['perm'] ?? '') === 'admin' ? 'selected' : '' ?>>Администратор</option>
-                <? if (!in_array($value['login'], $db_root['login'])): ?>
+                
+                <? if (!in_array($user_row['login'], $db_root['login'])): ?>
                     <option value="user" <?= ($user_row['perm'] ?? '') === 'user' ? 'selected' : '' ?>>Пользователь</option>
                 <? endif; ?>
         </select>

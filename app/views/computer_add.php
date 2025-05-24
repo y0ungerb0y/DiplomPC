@@ -25,7 +25,7 @@ $storages = $pdo->query("SELECT * FROM components WHERE type='storage'")->fetchA
         <form action="/api/add?type=computer" method="POST">
             <div class="form-group">
                 <label for="number">Номер компьютера:</label>
-                <input type="text" id="number" name="number" required>
+                <input type="number" id="number" name="number" required>
             </div>
             <div class="form-group">
                 <label for="memory">Оперативная память:</label>

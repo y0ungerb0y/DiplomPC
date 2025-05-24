@@ -1,10 +1,10 @@
 <?php
-include_once('app/core/config.php');
-include_once('app/core/PDO.php');
+if (!defined('ROOT')) 
+{
+    define('ROOT', $_SERVER['DOCUMENT_ROOT']);
+}
 
-include_once('app/repo/Permcheck.php');
-
-include_once('app/core/router.php');
+include_once('app/core/Core.php');
 
 
 

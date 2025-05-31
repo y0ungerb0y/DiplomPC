@@ -18,7 +18,10 @@
         if ($row['perm'] == 'admin'): ?>
             <div class="admin-buttons">
                 <a href="/cabinet/computer/history">История</a>
-                <a href="/cabinet/computer/add">Добавить</a>               
+                <a href="/cabinet/computer/add">Добавить</a>     
+                <form method="POST" action="/cabinet/generateReport">
+                    <button type="submit" name="generate_report">Сгенерировать отчет</button>
+                </form>          
             </div>
                 
             </div>

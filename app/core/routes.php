@@ -10,6 +10,7 @@ $routes = [
     "/cabinet/computer/view" => "app/views/computer_view.php",
     "/cabinet/computer/transfer" => "app/views/computer_transfer_form.php",
     "/cabinet/computer/history" => "app/views/computer_transfer_history.php",
+    "/cabinet/generateReport" => "app/repo/GenerateReport.php",
     
     //Components
     "/cabinet/component/add" => "app/views/component_add.php",
@@ -18,6 +19,7 @@ $routes = [
     "/cabinet/user/add" => "app/views/user_add.php",
     "/cabinet/user/view" => "app/views/user_view.php",
     "/cabinet/user/edit" => "app/views/user_edit.php",
+    
     
     
     // API ENDPOINT

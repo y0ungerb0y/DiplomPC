@@ -10,14 +10,14 @@ if ($row['perm'] == 'admin'){
         $processor = $_POST["processor"];
         $memory = $_POST["memory"];
         $harddisk = $_POST["harddisk"];
-
+        $responsible_person = $_POST['responsible_person'];
 
         if (empty($number)) {
             die("Номер компьютера не может быть пустым.");
         }
-        $sql = "INSERT INTO computers (computer_number, motherboard, videocard, processor, memory, harddisk) VALUES (:number, :motherboard, :videocard, :processor, :memory, :harddisk)";
+        $sql = "INSERT INTO computers (computer_number, motherboard, videocard, processor, memory, harddisk, responsible_person) VALUES (:number, :motherboard, :videocard, :processor, :memory, :harddisk, :responsible_person)";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(['number' => $number, 'motherboard' => $motherboard, 'videocard' => $videocard, 'processor' => $processor, 'memory' => $memory, 'harddisk' => $harddisk]);
+        $stmt->execute(['number' => $number, 'motherboard' => $motherboard, 'videocard' => $videocard, 'processor' => $processor, 'memory' => $memory, 'harddisk' => $harddisk, 'responsible_person' => $responsible_person]);
 
         header("Location: /cabinet?include=computers");
         exit;

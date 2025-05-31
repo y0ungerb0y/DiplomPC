@@ -5,6 +5,7 @@ $motherboards = $pdo->query("SELECT * FROM components WHERE type='motherboard'")
 $cpus = $pdo->query("SELECT * FROM components WHERE type='cpu'")->fetchAll();
 $gpus = $pdo->query("SELECT * FROM components WHERE type='gpu'")->fetchAll();
 $storages = $pdo->query("SELECT * FROM components WHERE type='storage'")->fetchAll();
+$responsible_person = $pdo->query("SELECT id, login, name FROM users")->fetchAll();
 ?>
 
 
@@ -73,6 +74,17 @@ $storages = $pdo->query("SELECT * FROM components WHERE type='storage'")->fetchA
                 <option value="">-- Выберите ПЗУ --</option>
                     <?php foreach($storages as $storage): ?>
                         <option value="<?= $storage['name'] ?>"><?= $storage['name'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            
+            <div class="form-group">
+                <label for="responsible_person">Отвественный:</label>
+                <select id="responsible_person  "name="responsible_person" required>
+                <option value="">-- Выберите отвественного --</option>
+                    <?php foreach($responsible_person as $users): ?>
+                        <option value="<?= $users['id'] ?>"><?= "ФИО: ". $users['name']. " Логин: ". $users['login'] ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>

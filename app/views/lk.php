@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="<? $ROOT ?>/css/lk.css" rel="stylesheet">
     <title>Личный кабинет</title>
-    
+    <style>
+        @media print {
+        button { display: none; }
+        body { font-size: 12pt; }
+        table { width: 100%; border-collapse: collapse; }
+        table, th, td { border: 1px solid black; }
+        }
+    </style>
 </head>
 <body>
 
